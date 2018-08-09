@@ -18,11 +18,9 @@
 
 // Variables go here
 // timer
+
+var number = 90;
 var intervalId;
-var clockRunning = false;
-var timer = 90;
-// question object?
-// counter
 
 var correct = 0;
 var unanswered=0;
@@ -32,18 +30,47 @@ answers: ["Connie-Mack", "Jimmy-Collins", "John-McGraw", "Hugh-Duffy"],
 correctAnswer: "Connie-Mack"},
 {question: "After a stint in Kansas City the team officially moved to Oakland in what year?",
 answers: ["1961", "1966", "1968", "1969"],
-correctAnswer: "1968"}
-// {question: ""}
-
+correctAnswer: "1968"},
+{question: "What starting pitcher did the Athletics acquire in the trade that sent Gio Gonzalez to the Nationals ?",
+answers: ["Tommy Milone", "Jon Lester", "Jarrod Parker", "Bartolo Colon"],
+correctAnswer: "Tommy Milone"},
+{question: "In 1990, Rickey Henderson surpassed Ty Cobb as the aAl's all-time leader in career stolen bases with his _____ stolen base",
+answers: ["864", "759", "819", "893"],
+correctAnswer: "893"},
+{question: "What was 'Catfish' Hunter's real first name?",
+answers: ["Bob", "Tim", "Jim", "Albert"],
+correctAnswer: "Jim"},
+{question: "What was 'Catfish' Hunter's real first name?",
+answers: ["Bob", "Tim", "Jim", "Albert"],
+correctAnswer: "Jim"},
+{question: "Who won 1987 Rookie of the Year",
+answers: ["Mark McGwire", "Jose Canseco", "Rickey Henderson", "Rob Nelson"],
+correctAnswer: "Mark McGwire"},
+{question: "What number did A's pitcher, Barry Zito wear?",
+answers: ["7", "17", "75", "15"],
+correctAnswer: "75"},
 
 ];
 
-if (!clockRunning) {
-      
-    intervalId = setInterval(timer.count, 1000);
-    clockRunning = true;
-  }
 // Functions go here:
+
+function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+  }
+  function decrement() {
+      number--;
+      $("#timeleft").text(number)
+      if (number === 0) {
+          stop()
+          alert("Time up!")
+
+      }
+    }
+   function stop(){
+       clearInterval(intervalId);
+   }
+
 // answerTracker
 var initializeGame = function(){
     for (var i = 0; i<questions.length; i++){
@@ -66,10 +93,12 @@ $("#end").on("click", function(){
             correct ++;
         }  
     }else{
+        
         unanswered ++;
     }
     }
 })
+$("#start").on("click", run);
 initializeGame()
 // showResults = function(){}
 
