@@ -34,12 +34,9 @@ correctAnswer: "1968"},
 {question: "What starting pitcher did the Athletics acquire in the trade that sent Gio Gonzalez to the Nationals ?",
 answers: ["Tommy Milone", "Jon Lester", "Jarrod Parker", "Bartolo Colon"],
 correctAnswer: "Tommy Milone"},
-{question: "In 1990, Rickey Henderson surpassed Ty Cobb as the aAl's all-time leader in career stolen bases with his _____ stolen base",
+{question: "In 1990, Rickey Henderson surpassed Ty Cobb as the AL's all-time leader in career stolen bases with his _____ stolen base",
 answers: ["864", "759", "819", "893"],
 correctAnswer: "893"},
-{question: "What was 'Catfish' Hunter's real first name?",
-answers: ["Bob", "Tim", "Jim", "Albert"],
-correctAnswer: "Jim"},
 {question: "What was 'Catfish' Hunter's real first name?",
 answers: ["Bob", "Tim", "Jim", "Albert"],
 correctAnswer: "Jim"},
@@ -54,7 +51,7 @@ correctAnswer: "75"},
 
 // Functions go here:
 
-function run() {
+function startTimer() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
   }
@@ -97,9 +94,18 @@ $("#end").on("click", function(){
         unanswered ++;
     }
     }
+    stop()
 })
-$("#start").on("click", run);
-initializeGame()
+
+function quizStart(){
+    startTimer()
+    initializeGame()
+}
+$("#start").on("click", quizStart);
+// document.querySelector("#start").innerText = unsortedArr.join(", ");
+
+
+
 // showResults = function(){}
 
 
