@@ -19,7 +19,7 @@
 // Variables go here
 // timer
 
-var number = 90;
+var number = 30;
 var intervalId;
 
 var correct = 0;
@@ -34,7 +34,7 @@ correctAnswer: "1968"},
 {question: "What starting pitcher did the Athletics acquire in the trade that sent Gio Gonzalez to the Nationals ?",
 answers: ["Tommy Milone", "Jon Lester", "Jarrod Parker", "Bartolo Colon"],
 correctAnswer: "Tommy Milone"},
-{question: "In 1990, Rickey Henderson surpassed Ty Cobb as the AL's all-time leader in career stolen bases with his _____ stolen base",
+{question: "In 1990, Rickey Henderson surpassed Ty Cobb as the AL's all-time leader in career stolen bases with his ___ stolen base",
 answers: ["864", "759", "819", "893"],
 correctAnswer: "893"},
 {question: "What was 'Catfish' Hunter's real first name?",
@@ -50,6 +50,10 @@ correctAnswer: "75"},
 ];
 
 // Functions go here:
+$("#questions").hide();
+$("#results").hide();
+$("#button-container").hide();
+$("#play-again").hide();
 
 function startTimer() {
     clearInterval(intervalId);
@@ -60,63 +64,42 @@ function startTimer() {
       $("#timeleft").text(number)
       if (number === 0) {
           stop();
+          $("#results").show();
           calculateScore();
           alert("Time's up!")
           displayScore();
+          $("#play-again").show();
 
       }
     }
    function stop(){
        clearInterval(intervalId);
    }
+   
 
 // answerTracker
 var initializeGame = function(){
     for (var i = 0; i<questions.length; i++){
-        var questionDiv = $("<div>");
+        var questionDiv = $("<div id='content'>");
         questionDiv.html("<h2>" + questions[i].question + "</h2>")
         for (var j = 0; j<questions[i].answers.length; j++){
-            questionDiv.append(`<input type='radio' name='question-${i}' value='${questions[i].answers[j]}'> ${questions[i].answers[j]}`);
+            questionDiv.append(`<input id='select' type='radio' name='question-${i}' value='${questions[i].answers[j]}'> ${questions[i].answers[j]}`);
             $("#questions").append(questionDiv);
         }
     }
 }
 
-            $("#end").on( "click", function (){
-
-                
-                stop();
-                calculateScore();
-                displayScore();
-                
-
-                alert("Correct: " + correct);
-                alert("Incorrect: " + incorrect);
-            })
+ $("#end").on( "click", function (){ 
+    stop();
+    $("#results").show();
+    calculateScore();
+    displayScore();
+    $("#play-again").show();
+    
+                // alert("Correct: " + correct);
+                // alert("Incorrect: " + incorrect);
+})
             
-
-//             questionDiv.append("<input type='radio' ans="+questions[i].answers[j]+" name="+"q"+i+">" + questions[i].answers[j])
-//             }
-//         $("#questions").append(questionDiv)
-        
-//     }
-// }
-
-
-// $("#end").on("click", function(){
-   
-//     for (let i = 0; i < questions.length; i++) {   
-//     if($("input[name=q"+i+"]:checked").length>0){
-//         if($("input[name=q"+i+"]:checked")[0].getAttribute("ans")==questions[i].correctAnswer) {
-//             correct ++;
-//         }  
-//     }else{
-        
-//         incorrect ++;
-//     }
-//     }
-//     stop()
-// })
 
 function displayScore() {
     $("#results").html("<h2>Correct: " + correct + "</h2><h2>Incorrect: " + incorrect + "</h2>");
@@ -142,12 +125,31 @@ function calculateScore() {
     }
 }
 
+
 function quizStart(){
     startTimer()
     initializeGame()
+    $("#questions").show();
+    $("#button-container").show();
+
+}
+
+function reset(){
+    $("#timeleft").empty();
+    $("#questions").hide();
+    $("#button-container").hide();
+    $("#results").hide();
+    $("#play-again").hide();
+    incorrect = 0;
+    correct = 0;
+    number = 30;
+    
+    
 
 }
 $("#start").on("click", quizStart);
+
+$("#reset-button").on("click", reset);
 // document.querySelector("#start").innerText = unsortedArr.join(", ");
 
 

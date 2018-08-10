@@ -1,3 +1,127 @@
 body {
     background-image: url(../images/oakland_wallpaper.jpg);
 }
+
+#container {
+    
+    background-color: #FAFAF8;
+    margin: 75px auto ;
+
+    text-align: center;
+    width: 960px;
+    border: solid 5px #E8B321;
+    padding: 50px;
+    
+}
+#logo {
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    margin: 0 150px;
+}
+#title{
+    font-family: 'Graduate', cursive;
+    text-align: center;
+    color: #04342C;
+    font-size: 48px;
+
+}
+
+#timer {
+    font-family: 'Graduate', cursive;
+    margin: 0 auto;
+    text-align: center;
+    color: #04342C;
+
+}
+
+#start {
+    background-color: #E8B321;
+    border: none;
+    color: #FAFAF8;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 25px 100px;
+    cursor: pointer;
+
+}
+#button-container{
+    margin: 0 auto;
+    width: 960px;
+    text-align: center;
+    background-color: #FAFAF8;
+    width: 960px;
+    border: solid 5px #E8B321;
+    padding: 25px;
+
+
+
+}
+
+#questions {
+    font-family: 'Graduate', cursive;
+    background-color: #FAFAF8;
+    margin: 75px auto ;
+    text-align: center;
+    width: 960px;
+    border: solid 5px #E8B321;
+    padding: 50px;
+
+}
+#content {
+    padding: 10px;
+}
+#select {
+    margin: 0 0 0 10px;
+    text-align: center;
+}
+#end {
+    background-color: #E8B321;
+    border: none;
+    color: #FAFAF8;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+    cursor: pointer;
+    
+}
+
+#results {
+    font-family: 'Graduate', cursive;
+    background-color: #FAFAF8;
+    margin: 75px auto ;
+    text-align: center;
+    width: 960px;
+    border: solid 5px #E8B321;
+    padding: 50px;
+}
+
+#play-again {
+    margin: 0 auto;
+    width: 960px;
+    text-align: center;
+    background-color: #FAFAF8;
+    width: 960px;
+    border: solid 5px #E8B321;
+    padding: 25px;
+
+}
+
+#reset-button {
+    background-color: #E8B321;
+    border: none;
+    color: #FAFAF8;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+    cursor: pointer;
+}
