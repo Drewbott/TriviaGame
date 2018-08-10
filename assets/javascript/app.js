@@ -23,11 +23,11 @@ var number = 90;
 var intervalId;
 
 var correct = 0;
-var unanswered=0;
+var incorrect=0;
 var questions = [
 {question: "The Athletics were in Philadelphia when their franchise began in the American League in 1901. Who was their manager in that season?", 
-answers: ["Connie-Mack", "Jimmy-Collins", "John-McGraw", "Hugh-Duffy"],
-correctAnswer: "Connie-Mack"},
+answers: ["Connie Mack", "Jimmy Collins", "John McGraw", "Hugh Duffy"],
+correctAnswer: "Connie Mack"},
 {question: "After a stint in Kansas City the team officially moved to Oakland in what year?",
 answers: ["1961", "1966", "1968", "1969"],
 correctAnswer: "1968"},
@@ -59,8 +59,10 @@ function startTimer() {
       number--;
       $("#timeleft").text(number)
       if (number === 0) {
-          stop()
-          alert("Time up!")
+          stop();
+          calculateScore();
+          alert("Time's up!")
+          displayScore();
 
       }
     }
@@ -74,32 +76,76 @@ var initializeGame = function(){
         var questionDiv = $("<div>");
         questionDiv.html("<h2>" + questions[i].question + "</h2>")
         for (var j = 0; j<questions[i].answers.length; j++){
-            questionDiv.append("<input type='radio' ans="+questions[i].answers[j]+" name="+"q"+i+">" + questions[i].answers[j])
-            }
-        $("#questions").append(questionDiv)
-        
+            questionDiv.append(`<input type='radio' name='question-${i}' value='${questions[i].answers[j]}'> ${questions[i].answers[j]}`);
+            $("#questions").append(questionDiv);
+        }
     }
 }
 
+            $("#end").on( "click", function (){
 
-$("#end").on("click", function(){
-   
-    for (let i = 0; i < questions.length; i++) {   
-    if($("input[name=q"+i+"]:checked").length>0){
-        if($("input[name=q"+i+"]:checked")[0].getAttribute("ans")==questions[i].correctAnswer) {
-            correct ++;
-        }  
-    }else{
+                
+                stop();
+                calculateScore();
+                displayScore();
+                
+
+                alert("Correct: " + correct);
+                alert("Incorrect: " + incorrect);
+            })
+            
+
+//             questionDiv.append("<input type='radio' ans="+questions[i].answers[j]+" name="+"q"+i+">" + questions[i].answers[j])
+//             }
+//         $("#questions").append(questionDiv)
         
-        unanswered ++;
+//     }
+// }
+
+
+// $("#end").on("click", function(){
+   
+//     for (let i = 0; i < questions.length; i++) {   
+//     if($("input[name=q"+i+"]:checked").length>0){
+//         if($("input[name=q"+i+"]:checked")[0].getAttribute("ans")==questions[i].correctAnswer) {
+//             correct ++;
+//         }  
+//     }else{
+        
+//         incorrect ++;
+//     }
+//     }
+//     stop()
+// })
+
+function displayScore() {
+    $("#results").html("<h2>Correct: " + correct + "</h2><h2>Incorrect: " + incorrect + "</h2>");
+}
+
+function calculateScore() {
+    for (var i = 0; i < questions.length; i++) {
+        // debugger;
+        //take the input name and store as a variable 
+        if (document.querySelector(`input[name="question-${i}"]:checked`) == null) {
+            incorrect++;
+        } else {
+            var answer = document.querySelector(`input[name="question-${i}"]:checked`).value;
+            if(answer == questions[i].correctAnswer) {
+                correct++;
+            } else {
+
+                incorrect++;
+            }
+        }
+        
+
     }
-    }
-    stop()
-})
+}
 
 function quizStart(){
     startTimer()
     initializeGame()
+
 }
 $("#start").on("click", quizStart);
 // document.querySelector("#start").innerText = unsortedArr.join(", ");
