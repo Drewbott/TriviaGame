@@ -19,7 +19,7 @@
 // Variables go here
 // timer
 
-var number = 30;
+var number = 60;
 var intervalId;
 
 var correct = 0;
@@ -135,14 +135,17 @@ function quizStart(){
 }
 
 function reset(){
+    initializeGame();
+    $("select").empty();
     $("#timeleft").empty();
     $("#questions").hide();
+    $("#questions").empty();
     $("#button-container").hide();
     $("#results").hide();
     $("#play-again").hide();
     incorrect = 0;
     correct = 0;
-    number = 30;
+    number = 60;
     
     
 
